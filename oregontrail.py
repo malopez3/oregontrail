@@ -176,7 +176,6 @@ def status():
         print(colorama.Fore.RED + "YOU RAN OUT OF FOOD AND STARVED TO DEATH, THE GAME IS OVER")
         print(colorama.Fore.RESET)
         loss()
-        #SET HIGH PERCENTAGE TO TEST OUT
     elif random.random() >= 0.9995:
         #0.05% chance of suffering death injury
         print(colorama.Fore.RED + "YOU SUFFERED THE FOLLOWING INJURY AND DIED: " + random.choice(FATAL_INJURY_LIST))
