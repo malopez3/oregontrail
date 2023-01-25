@@ -28,9 +28,8 @@ MAX_HEALTH = 100
 MIN_DAYS_PER_REST = 1
 MAX_DAYS_PER_REST = 5
 
-FOOD_PER_HUNT = 100
-MIN_POUNDS_PER_HUNT = 50
-MAX_POUNDS_PER_HUNT = 150
+MIN_POUNDS_PER_HUNT = 5
+MAX_POUNDS_PER_HUNT = 200
 MIN_DAYS_PER_HUNT = 1
 MAX_DAYS_PER_HUNT = 5
 
@@ -40,17 +39,23 @@ MAX_DAYS_LOST = 10
 #random injury/death list
 #injuries in this list have 0.1% chance of resulting in death and 5% chance of resulting in reduced health by 20
 
-injury_list = ["Fever", "Dysentery", "Measles", "Cholera", "Typhoid", "Exhaustion", "Snakebite", "Broken leg", "Broken arm", 
+INJURY_LIST = ["Fever", "Dysentery", "Measles", "Cholera", "Typhoid", "Exhaustion", "Snakebite", "Broken leg", "Broken arm", 
 "Drowning (survived)", "Food poisoning", "Bad cold", "Burns", "Broken arm", "Broken foot", "Broken hand", "Broken hip", 
 "Broken leg", "Concussion", "Frostbite", "Infection", "Malaria", "Measles", "Pneumonia", "Scarlet Fever", "Smallpox", 
 "Typhoid Fever", "Water Poisoning", "Accidental Gunshot", "Dehydration"]
 
-fatal_injury_list = ["Cholera", "Dysentery", "Typhoid", "Snakebite", "Drowning", "Malaria", "Rabies", "Scarlet Fever", "Smallpox",
+FATAL_INJURY_LIST = ["Cholera", "Dysentery", "Typhoid", "Snakebite", "Drowning", "Malaria", "Rabies", "Scarlet Fever", "Smallpox",
 "Typhoid Fever", "Accidental Gunshot"]
 
-event_list = ["Buffalo stampede", "Fire", "Theft", "Wagon accident"]
+EVENT_LIST = ["Buffalo stampede", "Fire", "Theft", "Wagon accident"]
 
-weather_event_list = ["Thunderstorm", "Fog", "Duststorm", "Hailstorm"]
+WEATHER_EVENT_LIST = ["Thunderstorm", "Fog", "Duststorm", "Hailstorm"]
+
+#animals that you can hunt in the game
+
+LARGE_ANIMAL_LIST = ["deer", "elk", "bear", "bison"]
+
+SMALL_ANIMAL_LIST = ["squirrels", "rabbits"]
 
 #at the beginning of the game you start with 0 miles traveled
 milesTraveled = 0
@@ -100,14 +105,22 @@ def rest():
         for day in range(randomDaysResting):
             addDay()
 
+        if health > MAX_HEALTH:
+            health = MAX_HEALTH
+
         print("You rested for " + str(randomDaysResting) + " days and your health is " + str(health) + "/100")
     
     else:
 
         print("You are fully healed, you don't need to rest")
 
+
 def hunt():
+    #add what you got in the hunt
     global food
+
+    global SMALL_ANIMAL_LIST
+    global LARGE_ANIMAL_LIST
 
     print(colorama.Back.GREEN + "HUNT")
     print(colorama.Back.RESET)
@@ -120,7 +133,13 @@ def hunt():
     randomDaysHunting = random.randint(MIN_DAYS_PER_HUNT, MAX_DAYS_PER_HUNT)
 
     print("You spent " + str(randomDaysHunting) + " days hunting for food.")
-    print("You collected " + str(randomPoundsHunting) + " pounds of food in your hunt.")
+
+    #animal hunted corresponds to number of pounds collected in the hunt
+    if randomPoundsHunting <= 50:
+        print("You collected " + str(randomPoundsHunting) + " pounds of food in your hunt from hunting " + random.choice(SMALL_ANIMAL_LIST) + ".")
+    else:
+        print("You collected " + str(randomPoundsHunting) + " pounds of food in your hunt from hunting " + random.choice(LARGE_ANIMAL_LIST) + ".")
+
     print("You now have " + str(food) + " total food in your inventory.")
 
     for day in range(randomDaysHunting):
@@ -130,10 +149,10 @@ def status():
     global year
     global food
     global health
-    global fatal_injury_list
-    global injury_list
-    global weather_event_list
-    global event_list
+    global FATAL_INJURY_LIST
+    global INJURY_LIST
+    global WEATHER_EVENT_LIST
+    global EVENT_LIST
 
 
     if milesRemaining <= 0:
@@ -153,26 +172,26 @@ def status():
         print(colorama.Fore.RESET)
         loss()
         #SET HIGH PERCENTAGE TO TEST OUT
-    elif random.random() >= 0.995:
-        #0.5% chance of suffering death injury
-        print(colorama.Fore.RED + "YOU SUFFERED THE FOLLOWING INJURY AND DIED: " + random.choice(fatal_injury_list))
+    elif random.random() >= 0.9995:
+        #0.05% chance of suffering death injury
+        print(colorama.Fore.RED + "YOU SUFFERED THE FOLLOWING INJURY AND DIED: " + random.choice(FATAL_INJURY_LIST))
         print(colorama.Fore.RESET)
         loss()
-    elif random.random() >= 0.95:
-        #5% chance at suffering an injury that reduces health
-        print(colorama.Fore.RED + "YOU SUFFERED THE FOLLOWING INJURY, YOU SURVIVED BUT LOST 20 HEALTH: " + random.choice(injury_list))
+    elif random.random() >= 0.98:
+        #2% chance at suffering an injury that reduces health
+        print(colorama.Fore.RED + "YOU SUFFERED THE FOLLOWING INJURY, YOU SURVIVED BUT LOST 20 HEALTH: " + random.choice(INJURY_LIST))
         print(colorama.Fore.RESET)
         health -=20
-    elif random.random() >= 0.95:
-        #5% chance that there is a random event that causes loss in food
-        print(colorama.Fore.RED + "THE FOLLOWING EVENT OCCURED RESULTING IN A LOSS OF 100 POUNDS OF FOOD: " + random.choice(event_list))
+    elif random.random() >= 0.98:
+        #2% chance that there is a random event that causes loss in food
+        print(colorama.Fore.RED + "THE FOLLOWING EVENT OCCURED RESULTING IN A LOSS OF 100 POUNDS OF FOOD: " + random.choice(EVENT_LIST))
         print(colorama.Fore.RESET)
         food -=100
-    elif random.random() >= 0.95:
-        #5% chance that there is a severe weather event that causes you to lose days
+    elif random.random() >= 0.98:
+        #2% chance that there is a severe weather event that causes you to lose days
         randomDaysLost = random.randint(MIN_DAYS_LOST, MAX_DAYS_LOST)
         print(colorama.Fore.RED + "THE FOLLOWING SEVERE WEATHER EVENT OCCURRED, CAUSING YOUR GROUP TO LOSE " + str(randomDaysLost) + " DAYS OF TRAVEL: "
-        + random.choice(weather_event_list))
+        + random.choice(WEATHER_EVENT_LIST))
         print(colorama.Fore.RESET)
         for day in range(randomDaysLost):
             addDay()
