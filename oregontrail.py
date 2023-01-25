@@ -82,6 +82,11 @@ def travel():
     milesTraveled += randomMilesTraveled
     
     milesRemaining = TOTAL_MILES - milesTraveled
+
+    #makes sure that milesRemaining never goes below 0 miles
+    if milesRemaining < 0:
+        milesRemaining = 0
+    
     print(colorama.Back.GREEN + "TRAVEL")
     print(colorama.Back.RESET)
 
@@ -99,7 +104,7 @@ def rest():
     print(colorama.Back.RESET)
 
     if health < MAX_HEALTH:
-        health += 15
+        health += 20
         randomDaysResting = random.randint(MIN_DAYS_PER_REST, MAX_DAYS_PER_REST)
 
         for day in range(randomDaysResting):
@@ -182,11 +187,17 @@ def status():
         print(colorama.Fore.RED + "YOU SUFFERED THE FOLLOWING INJURY, YOU SURVIVED BUT LOST 20 HEALTH: " + random.choice(INJURY_LIST))
         print(colorama.Fore.RESET)
         health -=20
+        #make sure that health doesn't go below 0
+        if health < 0:
+            health = 0
     elif random.random() >= 0.98:
         #2% chance that there is a random event that causes loss in food
         print(colorama.Fore.RED + "THE FOLLOWING EVENT OCCURED RESULTING IN A LOSS OF 100 POUNDS OF FOOD: " + random.choice(EVENT_LIST))
         print(colorama.Fore.RESET)
         food -=100
+        #make sure that food doesn't go below 0
+        if food < 0:
+            food = 0
     elif random.random() >= 0.98:
         #2% chance that there is a severe weather event that causes you to lose days
         randomDaysLost = random.randint(MIN_DAYS_LOST, MAX_DAYS_LOST)
@@ -228,6 +239,9 @@ def addDay():
     global day
     global food
     food -= 10
+    #make sure food doesn't go below 0
+    if food < 0:
+        food = 0
     global health
     if day == 0 or day == 7 or day == 14 or day == 21 or day == 28:
         health -= 10
