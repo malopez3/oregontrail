@@ -22,4 +22,7 @@ Locations:
 - Soda Springs (1201 mi)
 - Fort Hall (1248 mi)
 - Snake River Crossing (1440 mi)
+- Fort Boise (1554 mi)
+- Grande Ronde in the Blue Mountains (1714 mi)
+- The Dalles (1839 mi)
 - 
