@@ -16,3 +16,10 @@ Locations:
 - Fort Kearney (304 mi)
 - Chimney Rock (554 mi)
 - Fort Laramie (640 mi)
+- Independence Rock (830 mi)
+- South Pass (932 mi)
+- Green River Crossing (1057 mi)
+- Soda Springs (1201 mi)
+- Fort Hall (1248 mi)
+- Snake River Crossing (1440 mi)
+- 
