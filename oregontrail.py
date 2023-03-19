@@ -90,6 +90,49 @@ def travel():
     print(colorama.Back.GREEN + "TRAVEL")
     print(colorama.Back.RESET)
 
+    if milesTraveled >= 100 and milesTraveled <= 150:
+        print (colorama.Back.YELLOW + "You have arrived at: KANSAS RIVER CROSSING")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 180 and milesTraveled <= 230:
+        print (colorama.Back.YELLOW + "You have arrived at: BIG BLUE RIVER CROSSING")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 300 and milesTraveled <= 350:
+        print (colorama.Back.YELLOW + "You have arrived at: FORT KEARNEY")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 550 and milesTraveled <= 600:
+        print (colorama.Back.YELLOW + "You have arrived at: CHIMNEY ROCK")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 640 and milesTraveled <= 700:
+        print (colorama.Back.YELLOW + "You have arrived at: FORT LARAMIE")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 800 and milesTraveled <= 850:
+        print (colorama.Back.YELLOW + "You have arrived at: INDEPENDENCE ROCK")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 930 and milesTraveled <= 980:
+        print (colorama.Back.YELLOW + "You have arrived at: SOUTH PASS")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 1050 and milesTraveled <= 1100:
+        print (colorama.Back.YELLOW + "You have arrived at: GREEN RIVER CROSSING")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 1200 and milesTraveled <= 1250:
+        print (colorama.Back.YELLOW + "You have arrived at: SODA SPRINGS")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 1240 and milesTraveled <= 1300:
+        print (colorama.Back.YELLOW + "You have arrived at: FORT HALL")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 1440 and milesTraveled <= 1500:
+        print (colorama.Back.YELLOW + "You have arrived at: SNAKE RIVER CROSSING")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 1550 and milesTraveled <= 1600:
+        print (colorama.Back.YELLOW + "You have arrived at: FORT BOISE")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 1710 and milesTraveled <= 1760:
+        print (colorama.Back.YELLOW + "You have arrived at: GRANDE RONDE IN THE BLUE MOUNTAINS")
+        print(colorama.Back.RESET)
+    if milesTraveled >= 1830 and milesTraveled <= 1880:
+        print (colorama.Back.YELLOW + "You have arrived at: THE DALLES")
+        print(colorama.Back.RESET)
+
     print("You traveled " + str(randomMilesTraveled) + " miles for a total of " + str(milesTraveled) + " miles traveled.")
     print("You have " + str(milesRemaining) + " miles until you arrive in Oregon.")
     randomDaysTraveled = random.randint(MIN_DAYS_PER_TRAVEL, MAX_DAYS_PER_TRAVEL)
