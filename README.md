@@ -25,4 +25,3 @@ Locations:
 - Fort Boise (1554 mi)
 - Grande Ronde in the Blue Mountains (1714 mi)
 - The Dalles (1839 mi)
-- 
