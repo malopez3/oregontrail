@@ -7,6 +7,7 @@ TODO:
 - Ability to have multiple characters and select name of each member
 - Add cash
 - Add ability to select starting month
+- Add statistics or graphs about gameplay
 
 Locations:
 
